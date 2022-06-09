@@ -5,13 +5,11 @@ The CRoss-Industry Standard Process for Data Mining provides a model and framewo
  
 2.	Business Understanding
 
-
 2.1	Determine Business Objectives
 The dataset provided for this practical application is from Kaggle that contains information on approx. 4.2 million used cars. I need to use this dataset to accomplish the following objectives,
 1.	Identify the factors that affect the price
 2.	Identify the factors valued by customers with a used car
 3.	Provide the recommendations to a used car dealership
-
 
 2.2	Assess Situation
 •	Assumptions
@@ -19,7 +17,6 @@ o	The data provided for this application is of high quality and minimal effort i
 o	Availability of system resources to perform data processing of approx. 4.2 data records
 •	Constraints
 o	None
-
 
 2.3	Determine Data Mining Goals
 •	Maintain as much as data after data cleanup activities
@@ -30,12 +27,10 @@ A project plan is not needed for this application.
  
 3.	Data Understanding
 
-
 3.1	Collect Initial Data
 •	Import all the necessary packages needed to perform functions related to pandas, modeling (sklearn), and plotting
 •	Import the data using read_csv
 •	The dataset contains 426880 records and 18 columns
-
 
 3.2	Describe and Explore Data
 •	4 out of the 18 are numerical features and the remaining are categorical features
@@ -57,14 +52,12 @@ A project plan is not needed for this application.
 •	state: 51 states in United States of America   
 •	year: [nan, 1900 to 2022]
 
-
 3.3	Verify Data Quality
 •	Almost all columns have missing values (NaN) 
 •	All numerical features have outliers
  
  
 4.	Data Preparation
-
 
 4.1	Select and Clean Data
 •	Used IQR to remove outliers from price, year, and odometer
@@ -84,7 +77,6 @@ title_status	'clean', 'rebuilt', 'lien', 'salvage', 'missing', 'parts only'	‘o
 paint_color	'white', 'blue', 'red', 'black', 'silver', 'grey', nan, 'brown', 'yellow', 'orange', 'green', 'custom', 'purple'	‘other’ assigned to ‘custom’ and NaN
 condition	'good', 'excellent', 'fair', 'like new', 'new', 'salvage'	A combination of ‘title_status’ and ‘price’ is used to conditionally set the value for NaN 
 
-
 4.2	Construct and Format Data
 •	Using numerical Target Encoder and IterativeImputer-BayesianRidge, all the categorical columns and values are converted to numerical features.
 •	Before we initiate the modeling, a data quality check is performed the following are inferred,
@@ -92,24 +84,20 @@ o	Price, year, model, and odometer need to be scaled
 o	An IQR needs to be performed again on ‘price’ to remove outliers (as mean and min are showing infinity) 
 •	After scaling the dataframe using StandardScalar() method, we now have 349631 records and 16 numerical features
 
-
 4.3	Integrate Data
 This step is not needed as we are not integrating with other datasets
 
 
 5.	Modeling
 
-
 5.1	Select Modeling
 •	Supervised regression models are leveraged for this application
 •	Since we are predicting the price of used cars, we will keep the price as an output variable and everything else as input variables
-
 
 5.2	Generate Test Design
 •	Using train_test_split method, the data is split into train set (70%) and test set (30%)
 •	Train set shape – (244741, 15) 
 •	Test set shape – (104890,) 
-
 
 5.3	Build and Assess Model
 The following supervised regression ML models are used in this application, 
@@ -117,11 +105,11 @@ The following supervised regression ML models are used in this application,
 •	Ridge Grid Regression
 •	Lasso Grid Regression
 •	KNN Regression
-A summary of the modeling results is saved in a dataframe.
+A summary of the modeling results is saved in a dataframe. 
+Link to the Jupyter Notebook, https://github.com/vinithajeeva/Practical-Application-2/blob/main/prompt_II_VJ.ipynb
  
 
 6.	Evaluation
-
 
 6.1	Evaluate Results
 •	Both Linear Regression and Ridge Regression performed well with lower MSEs and RMSEs with a high R2 Score.
@@ -136,7 +124,6 @@ o	The price of used cars is influenced by the fuel type of the car. Cars utilizi
 o	The price of used cars is influenced by the cylinders of the car. Cars with 8 and 12 cylinders have a high selling point for used cars.
 o	The price of used cars is influenced by the style type of car. Cars styles like a truck, pickup, and offroad have a high selling point for used cars.
  
-
 6.2	Determine Next Steps
 •	Explore additional modeling algorithms like decision trees, random forest, and bagging models to see how their MSE, RME, and R2s perform
 •	Instead of manually manipulating the values of categorical features, leverage Target Encoder, and IterativeImputer-BayesianRidge to automate the numerical value creation
